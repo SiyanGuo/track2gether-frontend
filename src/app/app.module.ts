@@ -9,6 +9,7 @@ import { IncomePageComponent } from './components/income-page/income-page.compon
 import { ExpensePageComponent } from './components/expense-page/expense-page.component';
 import { FormComponent } from './components/form/form.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PartnerPageComponent } from './components/partner-page/partner-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
     DashboardComponent,
     IncomePageComponent,
     ExpensePageComponent,
-    FormComponent
+    FormComponent,
+    PartnerPageComponent
   ],
   imports: [
     BrowserModule,
