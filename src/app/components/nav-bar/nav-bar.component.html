@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd">
+<nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="#">Track2gether</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,31 +7,35 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
-        <!-- visible after log in -->
+        <!-- ONLY visible after log in -->
         <ul class="navbar-nav mr-auto">
-
+        <!-- need to dynamically change active state -->
             <li class="nav-item active">
-                <a class="nav-link" href="#">My Dashboard</a>
+                <a class="nav-link" routerLink="/dashboard">My Dashboard</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">My Income</a>
+                <a class="nav-link" routerLink="/income">My Income</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">My Expense</a>
+                <a class="nav-link" routerLink="/expenses">My Expenses</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">My Partner</a>
+                <a class="nav-link" routerLink="/partner">My Partner</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/" (onClick) = "logout()">Logout</a>
             </li>
         </ul>
 
-        <!-- visible before log in -->
+        <!-- ONLY visible before log in -->
         <span class="navbar-text">
             <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="#">Log in</a>
                 </li>
     
