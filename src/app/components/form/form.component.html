@@ -20,12 +20,12 @@
 
                     <!-- validate input field to be a number -->
 
-                    <em *ngIf="(form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern']) || form.get('amount')?.untouched"
-                        class="text-danger"> required </em>
-                    <!-- <em *ngIf="form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
-                        class="text-danger"> required </em> -->
-                    <em *ngIf="form.get('amount')?.invalid && form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
-                        class="text-danger"> invalid number</em>
+                    <small *ngIf="(form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern']) || form.get('amount')?.untouched"
+                        class="text-secondary"> required </small>
+                    <!-- <small *ngIf="form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
+                        class="text-secondary"> required </small> -->
+                    <small *ngIf="form.get('amount')?.invalid && form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
+                        class="text-secondary"> invalid number</small>
                 </div>
 
                 <div *ngIf="type==='expenses'" class="col-sm-3">
@@ -42,8 +42,8 @@
                     </select>
 
 
-                    <em *ngIf="(form.get('category')?.invalid &&!form.get('category')?.errors?.['pattern']) || form.get('category')?.untouched"
-                    class="text-danger"> required </em>
+                    <small *ngIf="(form.get('category')?.invalid &&!form.get('category')?.errors?.['pattern']) || form.get('category')?.untouched"
+                    class="text-secondary"> required </small>
                 </div>
 
                 <div *ngIf="type==='income'" class="col-sm-3">
@@ -55,8 +55,8 @@
                         <option value="Food">Investment</option>
                         <option value="Other">Other</option>
                     </select>
-                    <em *ngIf="(form.get('category')?.invalid &&!form.get('category')?.errors?.['pattern']) || form.get('category')?.untouched"
-                    class="text-danger"> required </em>
+                    <small *ngIf="(form.get('category')?.invalid &&!form.get('category')?.errors?.['pattern']) || form.get('category')?.untouched"
+                    class="text-secondary"> required </small>
                 </div>
 
                 <div class="col-sm-3">
@@ -66,12 +66,12 @@
 
 
                     <!-- validate date format -->
-                    <em *ngIf="(form.get('date')?.invalid &&!form.get('date')?.errors?.['pattern']) || form.get('date')?.untouched"
-                        class="text-danger"> required </em>
-                    <!-- <em *ngIf="form.get('amount')?.invalid && !form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
-                        class="text-danger"> required </em> -->
-                    <em *ngIf="form.get('date')?.invalid && form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
-                        class="text-danger"> invalid date</em>
+                    <small *ngIf="(form.get('date')?.invalid &&!form.get('date')?.errors?.['pattern']) || form.get('date')?.untouched"
+                        class="text-secondary"> required </small>
+                    <!-- <small *ngIf="form.get('amount')?.invalid && !form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
+                        class="text-secondary"> required </small> -->
+                    <small *ngIf="form.get('date')?.invalid && form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
+                        class="text-secondary"> invalid date</small>
                 </div>
 
                 <div class="col-sm-3">

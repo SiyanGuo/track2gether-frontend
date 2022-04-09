@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { record } from 'src/app/models/record';
+import { Record } from 'src/app/models/record';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -19,7 +19,7 @@ export class FormComponent implements OnInit {
 
   constructor(private route:ActivatedRoute, private formBuilder: FormBuilder) { }
 
-  addTransaction(formValue:record){
+  addTransaction(formValue:Record){
 
     if(this.form.valid){
    

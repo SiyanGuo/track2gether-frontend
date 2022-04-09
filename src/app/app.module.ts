@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecordListComponent } from './components/record-list/record-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormComponent,
     PartnerPageComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecordListComponent,
   ],
   imports: [
     BrowserModule,
