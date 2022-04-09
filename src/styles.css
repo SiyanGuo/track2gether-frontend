@@ -3,6 +3,12 @@ body {
 height:100%;
 }
 
+:root {
+  --blue: #1e90ff;
+  --oragnge: #fba92c;
+  --gray: #565656;
+}
+
 body *{
     box-sizing: border-box;
     margin: 0;

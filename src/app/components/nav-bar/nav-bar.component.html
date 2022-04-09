@@ -10,20 +10,20 @@
         <!-- ONLY visible after log in -->
         <ul class="navbar-nav mr-auto">
         <!-- need to dynamically change active state -->
-            <li class="nav-item active">
-                <a class="nav-link" routerLink="/dashboard">My Dashboard</a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">My Dashboard</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" routerLink="/income">My Income</a>
+                <a class="nav-link" routerLink="/income" routerLinkActive="active">My Income</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" routerLink="/expenses">My Expenses</a>
+                <a class="nav-link" routerLink="/expenses" routerLinkActive="active">My Expenses</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" routerLink="/partner">My Partner</a>
+                <a class="nav-link" routerLink="/partner" routerLinkActive="active">My Partner</a>
             </li>
 
             <li class="nav-item">
@@ -36,11 +36,11 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Log in</a>
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active">Log in</a>
                 </li>
     
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign up</a>
+                    <a class="nav-link" routerLink="register" routerLinkActive="active">Sign up</a>
                 </li>
             </ul>
           </span>
