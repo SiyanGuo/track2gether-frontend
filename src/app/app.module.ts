@@ -15,6 +15,7 @@ import { PartnerPageComponent } from './components/partner-page/partner-page.com
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

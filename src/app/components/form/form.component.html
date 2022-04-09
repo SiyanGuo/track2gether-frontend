@@ -1,25 +1,34 @@
 <div class="jumbotron">
 
-    <h2 *ngIf="currentRoute==='income'" class="text-monospace mb-5 mx-auto text-center" style="width: 50%" > Hard Work Pays Off </h2>
-    <h2 *ngIf="currentRoute==='expenses'" class="text-monospace mb-5 mx-auto text-center" style="width: 50%" > Give My Dollars Jobs </h2>
+    <h2 *ngIf="type==='income'" class="text-monospace mb-5 mx-auto text-center" style="width: 50%"> Hard Work Pays Off
+    </h2>
+    <h2 *ngIf="type==='expenses'" class="text-monospace mb-5 mx-auto text-center" style="width: 50%"> Give My Dollars
+        Jobs </h2>
 
     <div class="mx-auto" style="width: 75%">
 
-        <form role="form" action="submit" id="form">
-            <div class="row mb-6">
+        <form role="form" [formGroup]="form" (ngSubmit)="addTransaction(form.value)">
+            <div class="row pb-4">
 
                 <div class="col-sm-3">
-                    <label for="amount" class="control-label">Amount</label>
+                    <label for="amount" class="control-label">Amount*</label>
+
                     <div class="input-group">
                         <span class="input-group-text" id="inputGroupPrepend2">$</span>
-                        <input id="amount" name ="amount" type="text" class="form-control" required/>
+                        <input id="amount" name="amount" type="text" class="form-control" formControlName="amount" />
                     </div>
+
+                    <!-- validate input field to be a number -->
+                    <em *ngIf="form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
+                        class="text-danger"> required </em>
+                    <em *ngIf="form.get('amount')?.invalid && form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
+                        class="text-danger"> invalid number</em>
 
                 </div>
 
-                <div *ngIf="currentRoute==='expenses'" class="col-sm-3">
-                    <label for="category" class="control-label">Category</label>
-                    <select name="category" id="category" class="form-control selectpicker" required>
+                <div *ngIf="type==='expenses'" class="col-sm-3">
+                    <label for="category" class="control-label">Category*</label>
+                    <select name="category" id="category" class="form-control selectpicker" formControlName="category">
                         <!-- retrieve from back end -->
                         <option selected="true" disabled>Please select a category</option>
                         <option value="Housing">Housing</option>
@@ -28,37 +37,55 @@
                         <option value="Clothing">Clothing</option>
                         <option value="Utility">Utility</option>
                         <option value="Other">Other</option>
-
-
                     </select>
+
+                    <em *ngIf="form.get('category')?.invalid && (form.get('category')?.dirty || form.get('category')?.touched)"
+                        class="text-danger">
+                        <em>invalid</em>
+                        required
+                    </em>
                 </div>
 
-                <div *ngIf="currentRoute==='income'" class="col-sm-3">
-                    <label for="category" class="control-label">Category</label>
-                    <select name="category" id="category" class="form-control selectpicker" required>
+                <div *ngIf="type==='income'" class="col-sm-3">
+                    <label for="category" class="control-label">Category*</label>
+                    <select name="category" id="category" class="form-control selectpicker" formControlName="category">
                         <!-- retrieve from back end -->
                         <option selected="true" disabled>Please select a category</option>
                         <option value="Housing">Salary</option>
                         <option value="Food">Investment</option>
                         <option value="Other">Other</option>
                     </select>
+                    <em *ngIf="form.get('category')?.invalid && (form.get('category')?.dirty || form.get('category')?.touched)"
+                        class="text-danger">
+                        required
+                    </em>
                 </div>
 
                 <div class="col-sm-3">
-                    <label class="control-label" for="date">Date</label>
-                    <input type="text" id="date" name="date" class="form-control" placeholder="MM/DD/YYY" required/>
+                    <label class="control-label" for="date">Date*</label>
+                    <input type="text" id="date" name="date" class="form-control" placeholder="MM/DD/YYY"
+                        formControlName="date" />
+
+
+                    <em *ngIf="form.get('amount')?.invalid && !form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
+                        class="text-danger"> required </em>
+                    <em *ngIf="form.get('date')?.invalid && form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
+                        class="text-danger"> invalid date</em>
+
                 </div>
 
                 <div class="col-sm-3">
                     <label for="description" class="control-label">Description</label>
-                    <input id="description" class="form-control" name="description"/>
+                    <input id="description" class="form-control" name="description" formControlName="description" />
                 </div>
 
             </div>
 
-            <div class="mx-auto pt-5" style="width: 200px">
-                <button type="submit" class="btn btn-primary pull-left text-center mx-auto" style="width: 200px">Add</button>
-            </div>     
+            <div class="mx-auto mt-5" style="width: 250px">
+                <button type="submit" class="btn btn-info pull-left text-center" style="width: 100px"
+                    [disabled]="form.invalid">Add</button>
+                <button type="reset" class="btn btn-info pull-left text-center ml-5" style="width: 100px">Clear</button>
+            </div>
 
         </form>
 
