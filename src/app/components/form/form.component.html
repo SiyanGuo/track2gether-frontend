@@ -19,11 +19,13 @@
                     </div>
 
                     <!-- validate input field to be a number -->
-                    <em *ngIf="form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
+
+                    <em *ngIf="(form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern']) || form.get('amount')?.untouched"
                         class="text-danger"> required </em>
+                    <!-- <em *ngIf="form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
+                        class="text-danger"> required </em> -->
                     <em *ngIf="form.get('amount')?.invalid && form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
                         class="text-danger"> invalid number</em>
-
                 </div>
 
                 <div *ngIf="type==='expenses'" class="col-sm-3">
@@ -39,11 +41,9 @@
                         <option value="Other">Other</option>
                     </select>
 
-                    <em *ngIf="form.get('category')?.invalid && (form.get('category')?.dirty || form.get('category')?.touched)"
-                        class="text-danger">
-                        <em>invalid</em>
-                        required
-                    </em>
+
+                    <em *ngIf="(form.get('category')?.invalid &&!form.get('category')?.errors?.['pattern']) || form.get('category')?.untouched"
+                    class="text-danger"> required </em>
                 </div>
 
                 <div *ngIf="type==='income'" class="col-sm-3">
@@ -55,10 +55,8 @@
                         <option value="Food">Investment</option>
                         <option value="Other">Other</option>
                     </select>
-                    <em *ngIf="form.get('category')?.invalid && (form.get('category')?.dirty || form.get('category')?.touched)"
-                        class="text-danger">
-                        required
-                    </em>
+                    <em *ngIf="(form.get('category')?.invalid &&!form.get('category')?.errors?.['pattern']) || form.get('category')?.untouched"
+                    class="text-danger"> required </em>
                 </div>
 
                 <div class="col-sm-3">
@@ -67,11 +65,13 @@
                         formControlName="date" />
 
 
-                    <em *ngIf="form.get('amount')?.invalid && !form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
+                    <!-- validate date format -->
+                    <em *ngIf="(form.get('date')?.invalid &&!form.get('date')?.errors?.['pattern']) || form.get('date')?.untouched"
                         class="text-danger"> required </em>
+                    <!-- <em *ngIf="form.get('amount')?.invalid && !form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
+                        class="text-danger"> required </em> -->
                     <em *ngIf="form.get('date')?.invalid && form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
                         class="text-danger"> invalid date</em>
-
                 </div>
 
                 <div class="col-sm-3">
@@ -81,7 +81,17 @@
 
             </div>
 
+
+            <div class="form-check mx-auto" style="width: 250px">
+                <input class="form-check-input form-control" type="checkbox" id="flexCheckChecked" formControlName="shared">
+                <label class="form-check-label" for="flexCheckChecked">
+                    Splitting it with my partner
+                </label>
+            </div>
+
+
             <div class="mx-auto mt-5" style="width: 250px">
+
                 <button type="submit" class="btn btn-info pull-left text-center" style="width: 100px"
                     [disabled]="form.invalid">Add</button>
                 <button type="reset" class="btn btn-info pull-left text-center ml-5" style="width: 100px">Clear</button>
