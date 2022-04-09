@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-
-  constructor() { }
+  currentRoute!:string; 
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.currentRoute= this.route.snapshot.url[0].path;
+
   }
 
 }
