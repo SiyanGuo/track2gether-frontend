@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false
+  
+//this will be the url for our backend
+  // BACKEND_URL: 'http://localhost:8080'
 };
 
 /*
