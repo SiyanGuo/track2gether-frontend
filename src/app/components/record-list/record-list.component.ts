@@ -19,6 +19,7 @@ import { FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { faPencil, faTrashCan}  from '@fortawesome/free-solid-svg-icons';
 
 interface Record {
   amount: number,
@@ -68,6 +69,8 @@ function search(text: string, pipe: PipeTransform): Record[] {
   providers: [DecimalPipe]
 })
 export class RecordListComponent {
+  faPencil = faPencil;
+  faTrashCan = faTrashCan;
 
   records$: Observable<Record[]>;
   filter = new FormControl('');

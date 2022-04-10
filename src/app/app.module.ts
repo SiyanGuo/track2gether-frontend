@@ -17,6 +17,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecordListComponent } from './components/record-list/record-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { RecordListComponent } from './components/record-list/record-list.compon
     NgbModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 <div class="containter mx-auto" style="width:75%">
 
+<div class="d-flex flex-row justify-content-between">
+
 
     <form>
         <div class="mb-3 row">
@@ -10,35 +12,82 @@
         </div>
     </form>
 
+
+    <div class="mb-6">
+        <select name="monthly" id="" class="form-control">
+            <option value="" selected="true" disabled>Monthly View</option>
+            <option value="">January</option>
+            <option value="">Feburary</option>
+        </select>
+    </div>
+</div>
+
+
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">*</th>
-                <th scope="col">Category</th>
+                <th scope="col">Date</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Description</th>
-                <th scope="col">Shared</th>
-                <th scope="col">Date</th>
+
+
+                <!-- if it is income -->
+
+                <th scope="col">
+                    <select name="category" id="" class="form-control">
+                        <option value="" selected="true" disabled>Category</option>
+                        <option value="">Salary</option>
+                        <option value="">Investment</option>
+                    </select>
+                </th>
+
+
+                <!-- if it is expenses -->
+                <!-- <th scope="col">
+                    <select name="category" id="" class="form-control">
+                        <option value="" selected="true" disabled>Category</option>
+                        <option value="">Housing</option>
+                        <option value="">Food</option>
+                    </select>
+                </th> -->
+
+                <th scope="col">
+                    <select name="shared" id="" class="form-control">
+                        <option selected="true" disabled>Shared</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </th>
+
+                <th scope="col"style="width:7%">Edit/Delete</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let record of records$ | async; index as i">
                 <th scope="row">{{ i + 1 }}</th>
-            
+
+
                 <td>
-                    <ngb-highlight [result]="record.category" [term]="filter.value"></ngb-highlight>
+                    <ngb-highlight [result]="record.date" [term]="filter.value"></ngb-highlight>
                 </td>
                 <td>
                     <ngb-highlight [result]="record.amount | number" [term]="filter.value"></ngb-highlight>
-
+                </td>
                 <td>
                     <ngb-highlight [result]="record.description" [term]="filter.value"></ngb-highlight>
                 </td>
+
+                <td>
+                    <ngb-highlight [result]="record.category" [term]="filter.value"></ngb-highlight>
+                </td>
+
                 <td>
                     <ngb-highlight [result]=" (record.shared? 'Yes': 'No')" [term]="filter.value"></ngb-highlight>
                 </td>
+
                 <td>
-                    <ngb-highlight [result]="record.date" [term]="filter.value"></ngb-highlight>
+                    <fa-icon [icon]="faPencil" class="pr-4"></fa-icon>  <fa-icon [icon]="faTrashCan"></fa-icon>
                 </td>
             </tr>
         </tbody>
