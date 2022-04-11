@@ -16,6 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RecordListComponent } from './components/record-list/record-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
+import { HomeComponent } from './components/home/home.component';
+import { InterceptorService } from './_helpers/auth.interceptor';
+
 
 
 @NgModule({
@@ -29,7 +32,6 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     PartnerPageComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent,
     RecordListComponent,
     DeleteModalComponent,
   ],

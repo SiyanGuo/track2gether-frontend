@@ -6,9 +6,9 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
+  
         <!-- ONLY visible after log in -->
-        <ul class="navbar-nav mr-auto">
+        <ul *ngIf="!this.loggedIn" class="navbar-nav mr-auto">
         <!-- need to dynamically change active state -->
             <li class="nav-item">
                 <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">My Dashboard</a>
@@ -31,19 +31,21 @@
             </li>
         </ul>
 
-        <!-- ONLY visible before log in -->
-        <span class="navbar-text">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/login" routerLinkActive="active">Log in</a>
-                </li>
+        <div *ngIf="this.loggedIn">
+            <span class="navbar-text">
+                <ul class="navbar-nav mr-auto">
     
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="register" routerLinkActive="active">Sign up</a>
-                </li>
-            </ul>
-          </span>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/login" routerLinkActive="active">Log in</a>
+                    </li>
+        
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="register" routerLinkActive="active">Sign up</a>
+                    </li>
+                </ul>
+              </span>
+        </div>
+
 
     </div>
 </nav>
