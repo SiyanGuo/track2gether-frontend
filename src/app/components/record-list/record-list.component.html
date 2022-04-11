@@ -72,10 +72,13 @@
                 </td>
 
                 <td>
-                    <fa-icon [icon]="faPencil" class="mr-4"></fa-icon> <fa-icon (click)="delete(record.description)" [icon]="faTrashCan"></fa-icon>
+                    <fa-icon [icon]="faPencil" class="mr-4" (click)="passRecord(record)"></fa-icon> 
+                    <fa-icon (click)="delete(record.description)" [icon]="faTrashCan"></fa-icon>
                 </td>
             </tr>
         </tbody>
     </table>
 
 </div>
+
+<app-record-modal></app-record-modal>
