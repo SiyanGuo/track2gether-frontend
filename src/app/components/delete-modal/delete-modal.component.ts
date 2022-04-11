@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({
-  selector: 'app-record-modal',
-  templateUrl: './record-modal.component.html',
-  styleUrls: ['./record-modal.component.css']
+  selector: 'app-delete-modal',
+  templateUrl: './delete-modal.component.html',
+  styleUrls: ['./delete-modal.component.css']
 })
-export class RecordModalComponent implements OnInit {
+export class DeleteModalComponent implements OnInit {
 
-
+  faTrashCan=faTrashCan;
+  @Input()
+  transactionId!:number;
   closeResult = '';
 
   constructor(private modalService: NgbModal) { }
@@ -20,8 +23,8 @@ export class RecordModalComponent implements OnInit {
     });
   }
 
-  delete() {
-    console.log("delete")
+  delete(transactionId:number) {
+    console.log("transactionId")
   };
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

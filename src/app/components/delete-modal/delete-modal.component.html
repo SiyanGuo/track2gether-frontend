@@ -6,14 +6,15 @@
     <div class="modal-body">
       <form>
         <div class="mb-3">
-          <h6>Are you sure to delete this?</h6>
+          <h6>Are you sure you want to delete this record?</h6>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close()" (click)="delete()">Yes</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()" (click)="delete(transactionId)">Yes</button>
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('close click')">No</button>
     </div>
   </ng-template>
 
-  <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+
+  <fa-icon (click)="open(content)" [icon]="faTrashCan"></fa-icon>

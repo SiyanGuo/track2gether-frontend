@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Record } from 'src/app/models/record';
 import { RecordService } from 'src/app/services/record.service';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -23,8 +23,10 @@ export class FormComponent implements OnInit {
   shared!: boolean;
 
   currentRecord!: Record;
+  isAdd = true;
 
   updateRecord() {
+    this.isAdd = false;
     this.form = this.formBuilder.group({
       amount: new FormControl(this.currentRecord.amount, [Validators.required, Validators.pattern('^[0-9]+$')]),
       category: new FormControl(this.currentRecord.category, Validators.required),
@@ -38,20 +40,38 @@ export class FormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private recordService: RecordService) { }
 
 
-  addTransaction(formValue: Record) {
+  sendTransaction(formValue: Record) {
 
     if (this.form.valid) {
 
-      console.log(formValue);
 
-      if (formValue.shared) {
-        formValue.amount /= 2;
-        // get userId and spouseId, categoryId send two post requests
+      if (this.isAdd) {
+        // make POST request
+        if (formValue.shared) {
+          formValue.amount /= 2;
+          console.log(formValue);
+          // get userId and spouseId, categoryId send two post requests
+        } else {
+          formValue.amount = + formValue.amount;
+          console.log(formValue);
+          // get userId, categoryId and send this request
+        }
       } else {
-        // get userId, categoryId and send this request
-      }
+        // make PUT request
+        if (formValue.shared) {
+          console.log(formValue);
+          formValue.amount /= 2;
+          // get userId and spouseId, categoryId send two post requests
+        } else {
+          formValue.amount = + formValue.amount;
+          console.log(formValue);
+          // get userId, categoryId and send this request
+   
+        }
 
+      }
     }
+    this.form.reset();
   }
 
   ngOnInit(): void {
@@ -67,7 +87,6 @@ export class FormComponent implements OnInit {
       description: new FormControl(this.description),
       shared: new FormControl(this.shared)
     });
-
 
   }
 

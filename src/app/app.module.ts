@@ -17,7 +17,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecordListComponent } from './components/record-list/record-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RecordModalComponent } from './components/record-modal/record-modal.component';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 
 
 @NgModule({
@@ -32,7 +32,7 @@ import { RecordModalComponent } from './components/record-modal/record-modal.com
     LoginComponent,
     RegisterComponent,
     RecordListComponent,
-    RecordModalComponent,
+    DeleteModalComponent,
   ],
   imports: [
     BrowserModule,
