@@ -5,11 +5,11 @@ import { ExpensePageComponent } from './components/expense-page/expense-page.com
 import { IncomePageComponent } from './components/income-page/income-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { PartnerPageComponent } from './components/partner-page/partner-page.component';
-import { RegisterComponent } from './components/register/register.component';
+// import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  // {path: 'register', component: RegisterComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'expenses', component: ExpensePageComponent},
   {path: 'income', component: IncomePageComponent },

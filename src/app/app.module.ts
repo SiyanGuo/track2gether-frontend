@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -13,7 +12,6 @@ import { FormComponent } from './components/form/form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PartnerPageComponent } from './components/partner-page/partner-page.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecordListComponent } from './components/record-list/record-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -30,6 +28,7 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     FormComponent,
     PartnerPageComponent,
     LoginComponent,
+    HomeComponent,
     RegisterComponent,
     RecordListComponent,
     DeleteModalComponent,
@@ -43,7 +42,9 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
     ReactiveFormsModule,
     FontAwesomeModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
