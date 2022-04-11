@@ -4,7 +4,7 @@
 
     <div class="mx-auto" style="width: 75%">
 
-        <form role="form" [formGroup]="form" (ngSubmit)="addTransaction(form.value)">
+        <form role="form" [formGroup]="form" (ngSubmit)="sendTransaction(form.value)">
             <div class="row pb-4">
 
                 <div class="col-sm-3">
@@ -12,7 +12,7 @@
 
                     <div class="input-group">
                         <span class="input-group-text" id="inputGroupPrepend2">$</span>
-                        <input id="amount" name="amount" type="text" class="form-control" formControlName="amount" />
+                        <input id="amount" name="amount" type="text" class="form-control" formControlName="amount"/>
                     </div>
 
                     <!-- validate input field to be a number -->
@@ -64,9 +64,10 @@
 
 
             <div class="mx-auto mt-5" style="width: 250px">
-
                 <button type="submit" class="btn btn-info pull-left text-center" style="width: 100px"
-                    [disabled]="form.invalid">Add</button>
+                    [disabled]="form.invalid" *ngIf="isAdd" >Add</button>
+                    <button type="submit" class="btn btn-info pull-left text-center" style="width: 100px"
+                    [disabled]="form.invalid" *ngIf="!isAdd" >Update</button>
                 <button type="reset" class="btn btn-info pull-left text-center ml-5" style="width: 100px">Clear</button>
             </div>
 
