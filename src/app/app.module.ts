@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,10 @@ import { PartnerPageComponent } from './components/partner-page/partner-page.com
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecordListComponent } from './components/record-list/record-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RecordModalComponent } from './components/record-modal/record-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormComponent,
     PartnerPageComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecordListComponent,
+    RecordModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

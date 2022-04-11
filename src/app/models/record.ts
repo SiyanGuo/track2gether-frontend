@@ -1,4 +1,4 @@
-export interface record {
+export interface Record {
     amount:number,
     category: string,
     date: string,
