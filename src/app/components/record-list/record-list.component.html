@@ -15,9 +15,9 @@
 
     <div class="mb-6">
         <select name="monthly" id="" class="form-control">
-            <option value="" selected="true" disabled>Monthly View</option>
-            <option value="">January</option>
-            <option value="">Feburary</option>
+            <option value="all" selected="true">Monthly View</option>
+            <option value="{{month}}"  *ngFor="let month of months">{{month}}</option>
+        
         </select>
     </div>
 </div>
@@ -31,32 +31,18 @@
                 <th scope="col">Amount</th>
                 <th scope="col">Description</th>
 
-
-                <!-- if it is income -->
-
                 <th scope="col">
-                    <select name="category" id="" class="form-control">
-                        <option value="" selected="true" disabled>Category</option>
-                        <option value="">Salary</option>
-                        <option value="">Investment</option>
+                    <select name="category" id="category" class="form-control selectpicker">
+                        <option selected="true" disabled>Category</option>
+                        <option value="{{categoryOption}}" *ngFor="let categoryOption of categories">{{categoryOption}}</option>
                     </select>
                 </th>
 
-
-                <!-- if it is expenses -->
-                <!-- <th scope="col">
-                    <select name="category" id="" class="form-control">
-                        <option value="" selected="true" disabled>Category</option>
-                        <option value="">Housing</option>
-                        <option value="">Food</option>
-                    </select>
-                </th> -->
-
                 <th scope="col">
                     <select name="shared" id="" class="form-control">
-                        <option selected="true" disabled>Shared</option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
+                        <option selected="true" value="all">Shared</option>
+                        <option value="true">Common</option>
+                        <option value="false">Individual</option>
                     </select>
                 </th>
 
@@ -66,7 +52,6 @@
         <tbody>
             <tr *ngFor="let record of records$ | async; index as i">
                 <th scope="row">{{ i + 1 }}</th>
-
 
                 <td>
                     <ngb-highlight [result]="record.date" [term]="filter.value"></ngb-highlight>
@@ -83,11 +68,11 @@
                 </td>
 
                 <td>
-                    <ngb-highlight [result]=" (record.shared? 'Yes': 'No')" [term]="filter.value"></ngb-highlight>
+                    <ngb-highlight [result]=" (record.shared? 'Common': 'Individual')" [term]="filter.value"></ngb-highlight>
                 </td>
 
                 <td>
-                    <fa-icon [icon]="faPencil" class="pr-4"></fa-icon>  <fa-icon [icon]="faTrashCan"></fa-icon>
+                    <fa-icon [icon]="faPencil" class="mr-4"></fa-icon> <fa-icon (click)="delete(record.description)" [icon]="faTrashCan"></fa-icon>
                 </td>
             </tr>
         </tbody>

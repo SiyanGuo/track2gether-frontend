@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-expense-page',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./expense-page.component.css']
 })
 export class ExpensePageComponent implements OnInit {
+  type!: string;
 
-  constructor() { }
+  //call the service and dynamically retrive from backend & need to get a handle of ID
+  category=["Housing", "Food", "Transportation", "Clothing", "Utility", "Other"]
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // retreive url parameter
+    this.type = this.route.snapshot.url[0].path;
   }
 
 }

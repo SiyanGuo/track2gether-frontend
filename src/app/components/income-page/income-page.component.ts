@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-income-page',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./income-page.component.css']
 })
 export class IncomePageComponent implements OnInit {
+  type!:string; 
+  //will retrive from back end
+  category=["Salary", "Investment", "Other"];
 
-  constructor() { }
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+        // retreive url parameter
+        this.type= this.route.snapshot.url[0].path;
   }
 
 }

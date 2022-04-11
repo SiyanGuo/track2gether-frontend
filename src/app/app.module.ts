@@ -18,6 +18,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecordListComponent } from './components/record-list/record-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RecordModalComponent } from './components/record-modal/record-modal.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     RegisterComponent,
     RecordListComponent,
+    RecordModalComponent,
   ],
   imports: [
     BrowserModule,

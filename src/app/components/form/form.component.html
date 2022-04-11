@@ -1,9 +1,6 @@
 <div class="jumbotron">
 
-    <h2 *ngIf="type==='income'" class="text-monospace mb-5 mx-auto text-center" style="width: 50%"> Hard Work Pays Off
-    </h2>
-    <h2 *ngIf="type==='expenses'" class="text-monospace mb-5 mx-auto text-center" style="width: 50%"> Give My Dollars
-        Jobs </h2>
+    <h2 class="text-monospace mb-5 mx-auto text-center" style="width: 50%"> {{type==='expenses' ? 'Give My Dollars Jobs' : 'Hard Work Pays Off'}} </h2>
 
     <div class="mx-auto" style="width: 75%">
 
@@ -22,38 +19,16 @@
 
                     <small *ngIf="(form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern']) || form.get('amount')?.untouched"
                         class="text-secondary"> required </small>
-                    <!-- <small *ngIf="form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
-                        class="text-secondary"> required </small> -->
                     <small *ngIf="form.get('amount')?.invalid && form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
                         class="text-secondary"> invalid number</small>
                 </div>
 
-                <div *ngIf="type==='expenses'" class="col-sm-3">
+
+                <div class="col-sm-3">
                     <label for="category" class="control-label">Category*</label>
                     <select name="category" id="category" class="form-control selectpicker" formControlName="category">
-                        <!-- retrieve from back end -->
                         <option selected="true" disabled>Please select a category</option>
-                        <option value="Housing">Housing</option>
-                        <option value="Food">Food</option>
-                        <option value="Transportation">Transportation</option>
-                        <option value="Clothing">Clothing</option>
-                        <option value="Utility">Utility</option>
-                        <option value="Other">Other</option>
-                    </select>
-
-
-                    <small *ngIf="(form.get('category')?.invalid &&!form.get('category')?.errors?.['pattern']) || form.get('category')?.untouched"
-                    class="text-secondary"> required </small>
-                </div>
-
-                <div *ngIf="type==='income'" class="col-sm-3">
-                    <label for="category" class="control-label">Category*</label>
-                    <select name="category" id="category" class="form-control selectpicker" formControlName="category">
-                        <!-- retrieve from back end -->
-                        <option selected="true" disabled>Please select a category</option>
-                        <option value="Housing">Salary</option>
-                        <option value="Food">Investment</option>
-                        <option value="Other">Other</option>
+                        <option value="{{categoryOption}}" *ngFor="let categoryOption of categories">{{categoryOption}}</option>
                     </select>
                     <small *ngIf="(form.get('category')?.invalid &&!form.get('category')?.errors?.['pattern']) || form.get('category')?.untouched"
                     class="text-secondary"> required </small>
@@ -68,8 +43,6 @@
                     <!-- validate date format -->
                     <small *ngIf="(form.get('date')?.invalid &&!form.get('date')?.errors?.['pattern']) || form.get('date')?.untouched"
                         class="text-secondary"> required </small>
-                    <!-- <small *ngIf="form.get('amount')?.invalid && !form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
-                        class="text-secondary"> required </small> -->
                     <small *ngIf="form.get('date')?.invalid && form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
                         class="text-secondary"> invalid date</small>
                 </div>
