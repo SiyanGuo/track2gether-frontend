@@ -1,0 +1,86 @@
+<div class="containter mx-auto" style="width:75%">
+
+    <div class="d-flex flex-row justify-content-between">
+
+
+        <form>
+            <div class="mb-3 row">
+                <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text
+                    search:</label>
+                <div class="col-xs-3 col-sm-auto">
+                    <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter">
+                </div>
+            </div>
+        </form>
+
+
+        <div class="mb-6">
+            <select name="monthly" id="" class="form-control">
+                <option value="all" selected="true">Monthly View</option>
+                <option value="{{month}}" *ngFor="let month of months">{{month}}</option>
+
+            </select>
+        </div>
+    </div>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">*</th>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Description</th>
+
+                <th scope="col">
+                    <select name="category" id="category" class="form-control selectpicker">
+                        <option selected="true" disabled>Category</option>
+                        <option value="{{categoryOption}}" *ngFor="let categoryOption of categories">{{categoryOption}}
+                        </option>
+                    </select>
+                </th>
+
+                <th scope="col">
+                    <select name="shared" id="" class="form-control">
+                        <option selected="true" value="all">Shared</option>
+                        <option value="true">Common</option>
+                        <option value="false">Individual</option>
+                    </select>
+                </th>
+
+                <th scope="col" style="width:7%">Edit/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let record of records$ | async; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+
+                <td>
+                    <ngb-highlight [result]="record.date" [term]="filter.value"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="record.amount | number" [term]="filter.value"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="record.description" [term]="filter.value"></ngb-highlight>
+                </td>
+
+                <td>
+                    <ngb-highlight [result]="record.category" [term]="filter.value"></ngb-highlight>
+                </td>
+
+                <td>
+                    <ngb-highlight [result]=" (record.shared? 'Common': 'Individual')" [term]="filter.value">
+                    </ngb-highlight>
+                </td>
+
+                <td>
+                    <fa-icon [icon]="faPencil" class="mr-4" (click)="passRecord(record)"></fa-icon>
+                    <app-delete-modal [transactionId]="record.amount"></app-delete-modal>
+                    <!-- <fa-icon (click)="delete(record.description)" [icon]="faTrashCan"></fa-icon> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
