@@ -14,7 +14,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { PartnerPageComponent } from './components/partner-page/partner-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -37,7 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [authInterceptorProviders],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
