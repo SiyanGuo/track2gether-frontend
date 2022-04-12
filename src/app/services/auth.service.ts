@@ -15,6 +15,7 @@ export class AuthService {
   loginErrorSubject: Subject<string> = new Subject<string>(); //for error message
 
   isLoggedin = false;
+  currentUser:any;
 
   constructor(private client: HttpClient, private router: Router) {}
 
@@ -41,13 +42,15 @@ export class AuthService {
       )
       .subscribe(
         (res) => {
+         
           const jwt = res.headers.get("token");
 
           localStorage.setItem("jwt", JSON.stringify(jwt));
-
           localStorage.setItem("user_info", JSON.stringify(res.body));
 
           this.isLoggedin=true;
+          this.currentUser=res.body;
+          console.log("currentUser", this.currentUser)
           this.router.navigate(["dashboard"]);
         },
         (err) => {

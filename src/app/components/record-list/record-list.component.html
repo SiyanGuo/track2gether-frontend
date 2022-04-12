@@ -32,6 +32,9 @@
                 <th scope="col">Amount</th>
                 <th scope="col">Description</th>
 
+                <th scope="col">Category</th>
+                <th scope="col">Shared</th>
+<!-- 
                 <th scope="col">
                     <select name="category" id="category" class="form-control selectpicker">
                         <option selected="true" disabled>Category</option>
@@ -46,13 +49,13 @@
                         <option value="true">Common</option>
                         <option value="false">Individual</option>
                     </select>
-                </th>
+                </th> -->
 
                 <th scope="col" style="width:7%">Edit/Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let record of records$ | async; index as i">
+            <tr *ngFor="let record of records$ | async ; index as i">
                 <th scope="row">{{ i + 1 }}</th>
 
                 <td>
@@ -66,7 +69,7 @@
                 </td>
 
                 <td>
-                    <ngb-highlight [result]="record.category" [term]="filter.value"></ngb-highlight>
+                    <ngb-highlight [result]="record.categoryname" [term]="filter.value"></ngb-highlight>
                 </td>
 
                 <td>

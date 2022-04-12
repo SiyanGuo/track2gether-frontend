@@ -1,44 +1,12 @@
 import { Component, Input, OnInit, PipeTransform } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Record } from 'src/app/models/record';
 import { RecordService } from 'src/app/services/record.service';
-
-const RECORDS: Record[] = [
-  {
-    type: "Expenses",
-    amount: 456,
-    category: "Food",
-    description: "family gathering",
-    shared: true,
-    date: "09/10/2021"
-  },
-  {
-    type: "Income",
-    amount: 2400,
-    category: "Salary",
-    description: "",
-    shared: false,
-    date: "09/30/2021"
-  },
-
-];
-
-function search(text: string, pipe: PipeTransform): Record[] {
-  return RECORDS.filter(record => {
-    const term = text.toLowerCase();
-    let checkShared = record.shared ? "Yes" : "No";
-    return record.type.toLowerCase().includes(term)
-      || record.description.toLowerCase().includes(term)
-      || record.category.toLowerCase().includes(term)
-      || record.date.toLowerCase().includes(term)
-      || checkShared.toLowerCase().includes(term)
-      || pipe.transform(record.amount).includes(term);
-  });
-}
+import { TransactionsService } from 'src/app/services/transactions.service';
 
 @Component({
   selector: 'app-record-list',
@@ -56,6 +24,8 @@ export class RecordListComponent implements OnInit {
   @Input()
   categories!: string[];
 
+  records!: Record[];
+
   currentMonth = new Date().getMonth();
 
   monthsArray: String[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -66,24 +36,57 @@ export class RecordListComponent implements OnInit {
   records$: Observable<Record[]>;
   filter = new FormControl('');
 
-  constructor(pipe: DecimalPipe, private recordService: RecordService) {
+  constructor(pipe: DecimalPipe, private recordService: RecordService, private transactionService: TransactionsService) {
     this.records$ = this.filter.valueChanges.pipe(
       startWith(''),
-      map(text => search(text, pipe))
+      map(text => this.search(text, pipe))
     );
   }
 
-  passRecord(record:Record) {
+  passRecord(record: Record) {
     this.recordService.currentRecord.next(record);
-    console.log("record",record)
+    console.log("record", record)
+  }
+
+
+  search(text: string, pipe: PipeTransform): Record[] {
+    return (this.records || []).filter(record => {
+      const term = text.toLowerCase();
+      let checkShared = record.shared ? "Yes" : "No";
+      return record.categorytype.toLowerCase().includes(term)
+        || record.description.toLowerCase().includes(term)
+        || record.categoryname.toLowerCase().includes(term)
+        || record.date.toLowerCase().includes(term)
+        || checkShared.toLowerCase().includes(term)
+        || pipe.transform(record.amount).includes(term);
+    });
   }
 
   ngOnInit(): void {
-    //get all transactions of this type (calling service)
+
+    if (this.type === "income") {
+      this.transactionService.getAllTransactionsByType(1).subscribe((data) => {
+        console.log("incomedata", data);
+        this.records = data;
+        this.records$=of(this.records);
+        console.log("this.records", this.records);
+      })
+    };
+
+
+    if (this.type === "expenses") {
+      this.transactionService.getAllTransactionsByType(2).subscribe((data) => {
+        console.log("extensedata", data);
+        this.records = data;
+        this.records$=of(this.records);
+      });
+
+    }
+
   }
 
-  delete(description:string){
-    if(confirm("Are you sure to delete this?")) {
+  delete(description: string) {
+    if (confirm("Are you sure to delete this?")) {
       // send DELETE REQUEST including transactionId and userId
       // if success , remove from the var array 
       console.log(description)
