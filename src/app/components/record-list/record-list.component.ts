@@ -6,7 +6,6 @@ import { map, startWith } from 'rxjs/operators';
 import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Record } from 'src/app/models/record';
 import { RecordService } from 'src/app/services/record.service';
-import { Category } from 'src/app/models/transaction-category';
 import { TransactionsService } from 'src/app/services/transactions.service';
 
 @Component({
@@ -54,7 +53,7 @@ export class RecordListComponent implements OnInit {
     return (this.records || []).filter(record => {
       const term = text.toLowerCase();
       let checkShared = record.shared ? "Yes" : "No";
-      return record.type.toLowerCase().includes(term)
+      return record.categorytype.toLowerCase().includes(term)
         || record.description.toLowerCase().includes(term)
         || record.categoryname.toLowerCase().includes(term)
         || record.date.toLowerCase().includes(term)

@@ -16,12 +16,21 @@ export class TransactionsService {
 
 
   getAllTransactionsByType(typeId:number): Observable<Record[]> {
-
+    // will need to swap userId
     // const url = `${environment.BACKEND_URL}/users/${this.authSerivice.currentUser.id}/transaction?transtype=1`;
     const url = `${environment.BACKEND_URL}/users/1/transactions?transtype=${typeId}`;
     return this.http.get<Record[]>(url
-    ).pipe(catchError(this.handleError<Record[]>('getAllIncomeTransactions', [])))
+    ).pipe(catchError(this.handleError<Record[]>('getAllTransactionsByType', [])))
   };
+
+
+  getAllTransactions():Observable<Record[]> {
+    // will need to swap spouseId 
+    const url = `${environment.BACKEND_URL}/users/1/transactions`;
+    return this.http.get<Record[]>(url
+    ).pipe(catchError(this.handleError<Record[]>('getAllTransactions', [])))
+
+  }
 
 
   private handleError<T>(operation = 'operation', reuslt?: T) {

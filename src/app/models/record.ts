@@ -5,5 +5,5 @@ export interface Record {
     date: string,
     description:string,
     shared:boolean,
-    type:string
+    categorytype:string
 }

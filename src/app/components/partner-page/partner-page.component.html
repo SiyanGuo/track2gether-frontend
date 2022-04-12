@@ -1,1 +1,10 @@
-<p>partner-page works!</p>
+<div *ngFor="let record of records" class="m-5">
+
+<p>Amount: {{record.amount}}</p>
+<p>Category: {{record.categoryname}}</p>
+<p>Date: {{record.date}}</p>
+<p>Description: {{record.description}}</p>
+<p>Type: {{record.categorytype}}</p>
+<p>Shared: {{record.shared}}</p>
+</div>
+
