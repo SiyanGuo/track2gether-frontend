@@ -53,7 +53,7 @@ export class RecordListComponent implements OnInit {
     return (this.records || []).filter(record => {
       const term = text.toLowerCase();
       let checkShared = record.shared ? "Yes" : "No";
-      return record.categorytype.toLowerCase().includes(term)
+      return record.categoryType.toLowerCase().includes(term)
         || record.description.toLowerCase().includes(term)
         || record.categoryname.toLowerCase().includes(term)
         || record.date.toLowerCase().includes(term)
