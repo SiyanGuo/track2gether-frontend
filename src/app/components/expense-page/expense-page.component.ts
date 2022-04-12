@@ -9,8 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ExpensePageComponent implements OnInit {
   type!: string;
 
-  //call the service and dynamically retrive from backend & need to get a handle of ID
-  category=["Housing", "Food", "Transportation", "Clothing", "Utility", "Other"]
+  category=["housing", "food", "transportation", "clothing", "utilities", "other"]
 
   constructor(private route: ActivatedRoute) { }
 

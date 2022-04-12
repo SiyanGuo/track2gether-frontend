@@ -29,7 +29,7 @@ export class FormComponent implements OnInit {
     this.isAdd = false;
     this.form = this.formBuilder.group({
       amount: new FormControl(this.currentRecord.amount, [Validators.required, Validators.pattern('^[0-9]+$')]),
-      category: new FormControl(this.currentRecord.category, Validators.required),
+      category: new FormControl(this.currentRecord.categoryname, Validators.required),
       date: new FormControl(this.currentRecord.date, [Validators.required, Validators.pattern('^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$')]),
       description: new FormControl(this.currentRecord.description),
       shared: new FormControl(this.currentRecord.shared)
