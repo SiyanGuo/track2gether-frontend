@@ -3,24 +3,28 @@
     <div class="jumbotron">
         <div class="container">
             <!-- need to update the name -->
-            <h1 class="display-3">Welcome <span>John</span>!</h1>
+            <h1 class="display-3">Welcome <span>{{firstName}}</span>!</h1>
             <div class="mb-5">
 
-                <p>Get a handle on your personal and partner's finances with Track2gether! Check out your overall financial status as below.</p>
+                <p>Get a handle on your personal and partner's finances with Track2gether! Check out your {{currentMonth}}'s
+                    financial status as below.</p>
 
             </div>
 
 
             <div class="input-group">
                 <div class="dropdown mr-3">
-                    <a class="btn btn-info " 
-                        >
+                    <a class="btn btn-info">
                         2022
-                </a>
+                    </a>
                 </div>
 
-
                 <div class="dropdown mr-3">
+                    <a class="btn btn-info">
+                        {{currentMonth}}
+                    </a>
+                </div>
+                <!-- <div class="dropdown mr-3">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         Monthly
@@ -28,7 +32,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item" type="button" *ngFor="let month of months">{{month}}</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 

@@ -19,7 +19,7 @@ export class RecordListComponent implements OnInit {
   faTrashCan = faTrashCan;
 
   @Input()
-  type!: string;
+  typeId!: number;
 
   @Input()
   categories!: string[];
@@ -45,9 +45,7 @@ export class RecordListComponent implements OnInit {
 
   passRecord(record: Record) {
     this.recordService.currentRecord.next(record);
-    console.log("record", record)
   }
-
 
   search(text: string, pipe: PipeTransform): Record[] {
     return (this.records || []).filter(record => {
@@ -64,33 +62,21 @@ export class RecordListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.type === "income") {
-      this.transactionService.getAllTransactionsByType(1).subscribe((data) => {
-        console.log("incomedata", data);
-        this.records = data;
-        this.records$=of(this.records);
-        console.log("this.records", this.records);
-      })
-    };
+    // if (this.type === "income") {
 
+    //   this.transactionService.getAllTransactionsByType(1);
+    //   this.transactionService.newTransactionList.subscribe(data =>{
+    //     this.records = data;
+    //   });
+    //   // this.records$ = of(this.records);      
+    // };
 
-    if (this.type === "expenses") {
-      this.transactionService.getAllTransactionsByType(2).subscribe((data) => {
-        console.log("extensedata", data);
-        this.records = data;
-        this.records$=of(this.records);
-      });
+    this.transactionService.getAllTransactionsByType(this.typeId);
 
-    }
+    this.transactionService.newTransactionList.subscribe(data => {
+      this.records = data;
+    });;
 
-  }
-
-  delete(description: string) {
-    if (confirm("Are you sure to delete this?")) {
-      // send DELETE REQUEST including transactionId and userId
-      // if success , remove from the var array 
-      console.log(description)
-    }
   }
 
 }

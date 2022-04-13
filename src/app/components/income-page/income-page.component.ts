@@ -9,15 +9,12 @@ import { TransactionsService } from 'src/app/services/transactions.service';
   styleUrls: ['./income-page.component.css']
 })
 export class IncomePageComponent implements OnInit {
-  type!: string;
-  category = ["salary", "investment", "other"];
-
+  typeId=1;
+  // category = ["salary", "investment", "other"];
 
   constructor(private route: ActivatedRoute, ) { }
 
   ngOnInit(): void {
-    // retreive url parameter
-    this.type = this.route.snapshot.url[0].path;
   }
 
 }

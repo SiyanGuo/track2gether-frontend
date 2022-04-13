@@ -7,15 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./expense-page.component.css']
 })
 export class ExpensePageComponent implements OnInit {
-  type!: string;
+  typeId=2;
 
   category=["housing", "food", "transportation", "clothing", "utilities", "other"]
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // retreive url parameter
-    this.type = this.route.snapshot.url[0].path;
   }
 
 }
