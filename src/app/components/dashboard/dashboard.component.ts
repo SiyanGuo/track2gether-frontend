@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartService } from 'src/app/services/chart.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,9 +17,10 @@ export class DashboardComponent implements OnInit {
   //   return index <= this.currentMonth
   // });
 
-  constructor() { }
+  constructor(private chartService: ChartService) { }
 
   ngOnInit(): void {
+    this.chartService.getIncomeAndExpenses();
   }
 
 }

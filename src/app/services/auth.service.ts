@@ -13,8 +13,7 @@ import { User } from "../models/user-models";
 })
 export class AuthService {
   loginErrorSubject: Subject<string> = new Subject<string>(); //for error message
-
-  isLoggedin = false;
+  isLoggedin: Subject<boolean> = new Subject<boolean>();
   currentUser:any;
 
   constructor(private client: HttpClient, private router: Router) {}
@@ -48,7 +47,7 @@ export class AuthService {
           localStorage.setItem("jwt", JSON.stringify(jwt));
           localStorage.setItem("user_info", JSON.stringify(res.body));
 
-          this.isLoggedin=true;
+          this.isLoggedin.next(true);
           this.currentUser=res.body;
           console.log("currentUser", this.currentUser)
           this.router.navigate(["dashboard"]);
