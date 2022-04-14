@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./partner-page.component.css']
 })
 export class PartnerPageComponent implements OnInit {
-
+  
+  searchText = "";
   records!: Record[];
   constructor(private transactionService: TransactionsService, private authService: AuthService, private router: Router) { }
   
