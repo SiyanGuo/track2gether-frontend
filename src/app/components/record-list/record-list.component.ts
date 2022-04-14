@@ -19,6 +19,8 @@ export class RecordListComponent implements OnInit {
   faTrashCan = faTrashCan;
 
   @Input()
+  typeId!: number;
+
   type!: string;
 
   @Input()
@@ -45,14 +47,12 @@ export class RecordListComponent implements OnInit {
 
   passRecord(record: Record) {
     this.recordService.currentRecord.next(record);
-    console.log("record", record)
   }
 
-
   search(text: string, pipe: PipeTransform): Record[] {
-    return (this.records || []).filter(record => {
+    return (this.records).filter(record => {
       const term = text.toLowerCase();
-      let checkShared = record.shared ? "Yes" : "No";
+      let checkShared = record.shared ? "Common" : "Individual";
       return record.categoryType.toLowerCase().includes(term)
         || record.description.toLowerCase().includes(term)
         || record.categoryname.toLowerCase().includes(term)
@@ -62,35 +62,31 @@ export class RecordListComponent implements OnInit {
     });
   }
 
+  filterByMonth(value: string) {
+
+    if (value === "all") this.transactionService.getAllTransactionsByType(this.typeId);
+
+    const monthNum = this.monthsArray.indexOf(value) + 1;
+
+    if (this.typeId == 1) this.type = "income"
+    else this.type = "expenses";
+
+    this.transactionService.getMonthlyTransactions(monthNum).subscribe(list => {
+      this.records = list.filter(each => { return each.categoryType == this.type });
+    })
+
+  };
+
+
   ngOnInit(): void {
+ 
+    this.transactionService.getAllTransactionsByType(this.typeId);
 
-    if (this.type === "income") {
-      this.transactionService.getAllTransactionsByType(1).subscribe((data) => {
-        console.log("incomedata", data);
-        this.records = data;
-        this.records$=of(this.records);
-        console.log("this.records", this.records);
-      })
-    };
+    this.transactionService.newTransactionList.subscribe(data => {
+      this.records = data;
+      // this.records$ = of(data);  
+    });
 
-
-    if (this.type === "expenses") {
-      this.transactionService.getAllTransactionsByType(2).subscribe((data) => {
-        console.log("extensedata", data);
-        this.records = data;
-        this.records$=of(this.records);
-      });
-
-    }
-
-  }
-
-  delete(description: string) {
-    if (confirm("Are you sure to delete this?")) {
-      // send DELETE REQUEST including transactionId and userId
-      // if success , remove from the var array 
-      console.log(description)
-    }
   }
 
 }

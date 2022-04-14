@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Category } from 'src/app/models/transaction-category';
-import { TransactionsService } from 'src/app/services/transactions.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-income-page',
@@ -9,15 +8,14 @@ import { TransactionsService } from 'src/app/services/transactions.service';
   styleUrls: ['./income-page.component.css']
 })
 export class IncomePageComponent implements OnInit {
-  type!: string;
-  category = ["salary", "investment", "other"];
+  typeId=1;
 
-
-  constructor(private route: ActivatedRoute, ) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // retreive url parameter
-    this.type = this.route.snapshot.url[0].path;
+    if(!this.authService.isLoggedIn) {
+      this.router.navigate(["login"]);
+    }
   }
 
 }

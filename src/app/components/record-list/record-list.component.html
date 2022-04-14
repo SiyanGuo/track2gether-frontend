@@ -15,7 +15,7 @@
 
 
         <div class="mb-6">
-            <select name="monthly" id="" class="form-control">
+            <select #monthly (change)="filterByMonth(monthly.value)" name="monthly" id="" class="form-control">
                 <option value="all" selected="true">Monthly View</option>
                 <option value="{{month}}" *ngFor="let month of months">{{month}}</option>
 
@@ -34,28 +34,12 @@
 
                 <th scope="col">Category</th>
                 <th scope="col">Shared</th>
-<!-- 
-                <th scope="col">
-                    <select name="category" id="category" class="form-control selectpicker">
-                        <option selected="true" disabled>Category</option>
-                        <option value="{{categoryOption}}" *ngFor="let categoryOption of categories">{{categoryOption}}
-                        </option>
-                    </select>
-                </th>
-
-                <th scope="col">
-                    <select name="shared" id="" class="form-control">
-                        <option selected="true" value="all">Shared</option>
-                        <option value="true">Common</option>
-                        <option value="false">Individual</option>
-                    </select>
-                </th> -->
 
                 <th scope="col" style="width:7%">Edit/Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let record of records$ | async ; index as i">
+            <tr *ngFor="let record of records ; index as i">
                 <th scope="row">{{ i + 1 }}</th>
 
                 <td>
@@ -78,9 +62,8 @@
                 </td>
 
                 <td>
-                    <fa-icon [icon]="faPencil" class="mr-4" (click)="passRecord(record)"></fa-icon>
-                    <app-delete-modal [transactionId]="record.amount"></app-delete-modal>
-                    <!-- <fa-icon (click)="delete(record.description)" [icon]="faTrashCan"></fa-icon> -->
+                    <fa-icon [icon]="faPencil" class="ml-3 mr-4" (click)="passRecord(record)"></fa-icon>
+                    <app-delete-modal [transactionId]="record.id" [typeId]="typeId"></app-delete-modal>
                 </td>
             </tr>
         </tbody>

@@ -1,6 +1,6 @@
 <div class="jumbotron">
 
-    <h2 class="text-monospace mb-5 mx-auto text-center" style="width: 50%"> {{type==='expenses' ? 'Give My Dollars Jobs' : 'Hard Work Pays Off'}} </h2>
+    <h2 class="text-monospace mb-5 mx-auto text-center" style="width: 50%"> {{typeId===2 ? 'Give My Dollars Jobs' : 'Hard Work Pays Off'}} </h2>
 
     <div class="mx-auto" style="width: 75%">
 
@@ -15,8 +15,6 @@
                         <input id="amount" name="amount" type="text" class="form-control" formControlName="amount"/>
                     </div>
 
-                    <!-- validate input field to be a number -->
-
                     <small *ngIf="(form.get('amount')?.invalid &&!form.get('amount')?.errors?.['pattern']) || form.get('amount')?.untouched"
                         class="text-secondary"> required </small>
                     <small *ngIf="form.get('amount')?.invalid && form.get('amount')?.errors?.['pattern'] &&(form.get('amount')?.dirty || form.get('amount')?.touched)"
@@ -26,11 +24,11 @@
 
                 <div class="col-sm-3">
                     <label for="category" class="control-label">Category*</label>
-                    <select name="category" id="category" class="form-control selectpicker" formControlName="category">
+                    <select name="category" id="category" class="form-control selectpicker" formControlName="categoryname">
                         <option selected="true" disabled>Please select a category</option>
                         <option value="{{categoryOption}}" *ngFor="let categoryOption of categories">{{categoryOption}}</option>
                     </select>
-                    <small *ngIf="(form.get('category')?.invalid &&!form.get('category')?.errors?.['pattern']) || form.get('category')?.untouched"
+                    <small *ngIf="(form.get('categoryname')?.invalid &&!form.get('categoryname')?.errors?.['pattern']) || form.get('categoryname')?.untouched"
                     class="text-secondary"> required </small>
                 </div>
 
@@ -39,8 +37,6 @@
                     <input type="text" id="date" name="date" class="form-control" placeholder="MM/DD/YYY"
                         formControlName="date" />
 
-
-                    <!-- validate date format -->
                     <small *ngIf="(form.get('date')?.invalid &&!form.get('date')?.errors?.['pattern']) || form.get('date')?.untouched"
                         class="text-secondary"> required </small>
                     <small *ngIf="form.get('date')?.invalid && form.get('date')?.errors?.['pattern'] &&(form.get('date')?.dirty || form.get('date')?.touched)"
