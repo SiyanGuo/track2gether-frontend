@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-expense-page',
@@ -7,16 +8,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./expense-page.component.css']
 })
 export class ExpensePageComponent implements OnInit {
-  type!: string;
+  typeId=2;
 
-  //call the service and dynamically retrive from backend & need to get a handle of ID
-  category=["Housing", "Food", "Transportation", "Clothing", "Utility", "Other"]
-
-  constructor(private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // retreive url parameter
-    this.type = this.route.snapshot.url[0].path;
+    if(!this.authService.isLoggedIn) {
+      this.router.navigate(["login"]);
+    }
   }
 
 }

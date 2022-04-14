@@ -1,8 +1,9 @@
 export interface Record {
+    id:number,
     amount:number,
-    category: string,
+    categoryname: string,
     date: string,
     description:string,
     shared:boolean,
-    type:string
+    categoryType:string
 }
