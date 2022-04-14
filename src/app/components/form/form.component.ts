@@ -32,6 +32,8 @@ export class FormComponent implements OnInit {
 
   object!:any;
 
+  constructor(private formBuilder: FormBuilder, private recordService: RecordService, private transactionService: TransactionsService) { }
+  
   updateRecord() {
     this.isAdd = false;
     this.form = this.formBuilder.group({
@@ -43,16 +45,12 @@ export class FormComponent implements OnInit {
     });
   }
 
-  constructor(private formBuilder: FormBuilder, private recordService: RecordService, private transactionService: TransactionsService) { }
-
-
   sendTransaction(formValue: Record) {
 
     if (this.form.valid) {
 
       this.object = this.categoryList.find(obj => obj.categoryname === formValue.categoryname)
       this.categoryId = this.object.id;
-console.log('categoriId', this.categoryId)
       if (this.isAdd) {
         if (formValue.shared) {
           formValue.amount /= 2;

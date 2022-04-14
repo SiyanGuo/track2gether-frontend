@@ -30,7 +30,6 @@ export class DeleteModalComponent implements OnInit {
   }
 
   delete() {
-    console.log("transactionId", this.transactionId)
     this.transactionService.deleteTransaction(this.transactionId)
     .subscribe( (res:any) => {
       this.transactionService.getAllTransactionsByType(this.typeId);

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { ChartService } from './chart.service';
@@ -5,8 +6,10 @@ import { ChartService } from './chart.service';
 describe('ChartService', () => {
   let service: ChartService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
+  beforeEach( async () => {
+    await TestBed.configureTestingModule({
+      imports:[HttpClientModule],
+    });
     service = TestBed.inject(ChartService);
   });
 
