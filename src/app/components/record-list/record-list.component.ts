@@ -21,6 +21,8 @@ export class RecordListComponent implements OnInit {
   @Input()
   typeId!: number;
 
+  type!: string;
+
   @Input()
   categories!: string[];
 
@@ -48,9 +50,9 @@ export class RecordListComponent implements OnInit {
   }
 
   search(text: string, pipe: PipeTransform): Record[] {
-    return (this.records || []).filter(record => {
+    return (this.records).filter(record => {
       const term = text.toLowerCase();
-      let checkShared = record.shared ? "Yes" : "No";
+      let checkShared = record.shared ? "Common" : "Individual";
       return record.categoryType.toLowerCase().includes(term)
         || record.description.toLowerCase().includes(term)
         || record.categoryname.toLowerCase().includes(term)
@@ -60,22 +62,30 @@ export class RecordListComponent implements OnInit {
     });
   }
 
+  filterByMonth(value: string) {
+
+    if (value === "all") this.transactionService.getAllTransactionsByType(this.typeId);
+
+    const monthNum = this.monthsArray.indexOf(value) + 1;
+
+    if (this.typeId == 1) this.type = "income"
+    else this.type = "expenses";
+
+    this.transactionService.getMonthlyTransactions(monthNum).subscribe(list => {
+      this.records = list.filter(each => { return each.categoryType == this.type });
+    })
+
+  };
+
+
   ngOnInit(): void {
-
-    // if (this.type === "income") {
-
-    //   this.transactionService.getAllTransactionsByType(1);
-    //   this.transactionService.newTransactionList.subscribe(data =>{
-    //     this.records = data;
-    //   });
-    //   // this.records$ = of(this.records);      
-    // };
-
+ 
     this.transactionService.getAllTransactionsByType(this.typeId);
 
     this.transactionService.newTransactionList.subscribe(data => {
       this.records = data;
-    });;
+      // this.records$ = of(data);  
+    });
 
   }
 

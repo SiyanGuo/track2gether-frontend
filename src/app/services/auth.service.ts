@@ -14,11 +14,8 @@ import { User } from "../models/user-models";
 export class AuthService {
   loginErrorSubject: Subject<string> = new Subject<string>(); //for error message
 
-  private loginStatus = new BehaviorSubject<boolean>(false);
+  private loginStatus = new BehaviorSubject<boolean>(this.checkLoginStatus());
 
-  get isLoggedIn() {
-    return this.loginStatus.asObservable();
-  }
   currentUser: any;
 
   constructor(private client: HttpClient, private router: Router) { }
@@ -64,10 +61,19 @@ export class AuthService {
       );
   }
 
-  logout(){
-    this.loginStatus.next(false);
+  logout() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("user_info");
     this.router.navigate(["login"]);
+    this.loginStatus.next(false);
+  }
+
+  checkLoginStatus(): boolean {
+    if (localStorage.getItem('jwt')) return true;
+    return false;
+  };
+
+  get isLoggedIn() {
+    return this.loginStatus.asObservable();
   }
 }

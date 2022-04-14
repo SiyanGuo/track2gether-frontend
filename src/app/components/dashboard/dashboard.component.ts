@@ -34,7 +34,6 @@ export class DashboardComponent implements OnInit {
     this.transactionService.getMonthlyTransactions(4).subscribe(list => {
       this.totalExpenses = Math.floor(list.filter(each => { return each.categoryType == "expenses" }).map(each => { return each.amount }).reduce((total, num) => total + num));
       this.totalIncome = Math.floor(list.filter(each => { return each.categoryType == "income" }).map(each => { return each.amount }).reduce((total, num) => total + num));
-      console.log('total income', this.totalIncome, this.totalExpenses);
       this.chartService.getIncomeAndExpenses(this.totalIncome, this.totalExpenses);
     })
 
