@@ -37,7 +37,7 @@ export class FormComponent implements OnInit {
   updateRecord() {
     this.isAdd = false;
     this.form = this.formBuilder.group({
-      amount: new FormControl(this.currentRecord.amount, [Validators.required, Validators.pattern('^[0-9]+$')]),
+      amount: new FormControl(this.currentRecord.amount, [Validators.required, Validators.pattern('^[0-9]{1,8}(,[0-9]{3})*(\.[0-9]+)*$')]),
       categoryname: new FormControl(this.currentRecord.categoryname, Validators.required),
       date: new FormControl(this.currentRecord.date, [Validators.required, Validators.pattern('^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$')]),
       description: new FormControl(this.currentRecord.description),
@@ -91,7 +91,7 @@ export class FormComponent implements OnInit {
     })
 
     this.form = this.formBuilder.group({
-      amount: new FormControl(this.amount, [Validators.required, Validators.pattern('^[0-9]+$')]),
+      amount: new FormControl(this.amount, [Validators.required, Validators.pattern('^[0-9]{1,8}(,[0-9]{3})*(\.[0-9]+)*$')]),
       categoryname: new FormControl(this.categoryname, Validators.required),
       date: new FormControl(this.date, [Validators.required, Validators.pattern('^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$')]),
       description: new FormControl(this.description),

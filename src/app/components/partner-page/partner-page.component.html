@@ -1,10 +1,26 @@
-<div *ngFor="let record of records" class="m-5">
-
-<p>Amount: {{record.amount}}</p>
-<p>Category: {{record.categoryname}}</p>
-<p>Date: {{record.date}}</p>
-<p>Description: {{record.description}}</p>
-<p>Type: {{record.categoryType}}</p>
-<p>Shared: {{record.shared}}</p>
+<div class="container text-center mt-4">
+     <h4 class="mb-4">List of my partner's expenses </h4>
+  <table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
+    <thead>
+        <tr> 
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Shared</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr *ngFor="let record of records">
+                <td>{{record.date}}</td>
+                <td>{{record.amount}}</td>
+                <td>{{record.description}}</td>
+                <td>{{record.categoryname}}</td>
+                <td>{{record.categoryType}}</td>
+                <td>{{record.shared}}</td>
+            </tr>
+    </tbody>
+  </table>
 </div>
-

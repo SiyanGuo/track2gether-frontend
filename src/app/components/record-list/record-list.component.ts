@@ -46,6 +46,9 @@ export class RecordListComponent implements OnInit {
   }
 
   passRecord(record: Record) {
+    if(record.shared){
+      record.amount*=2;
+    }
     this.recordService.currentRecord.next(record);
   }
 
