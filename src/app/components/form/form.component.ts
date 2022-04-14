@@ -57,8 +57,8 @@ export class FormComponent implements OnInit {
           this.transactionService.addTransaction(this.userId, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
           .subscribe( (res:any) => this.transactionService.getAllTransactionsByType(this.typeId));
 
-          // this.transactionService.addTransaction(this.spouseId, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
-          // .subscribe();
+          this.transactionService.addTransaction(this.spouseId, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
+          .subscribe();
         } else {
           formValue.amount = + formValue.amount;
           this.transactionService.addTransaction(this.userId, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
@@ -70,8 +70,8 @@ export class FormComponent implements OnInit {
           this.transactionService.updateTransaction(this.userId, this.currentRecord.id, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
           .subscribe((res:any) => this.transactionService.getAllTransactionsByType(this.typeId));
 
-          // this.transactionService.updateTransaction(this.spouseId, this.currentRecord.id, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
-          // .subscribe();
+          this.transactionService.updateTransaction(this.spouseId, this.currentRecord.id, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
+          .subscribe();
         } else {
           formValue.amount = + formValue.amount;
           this.transactionService.updateTransaction(this.userId, this.currentRecord.id, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)

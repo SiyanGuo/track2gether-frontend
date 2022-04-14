@@ -33,9 +33,7 @@ export class ChartService {
         }
       }
     }).pipe(catchError(this.handleError('getIncomeAndExpenses', [])))
-      .subscribe(data => {
-        console.log("chart", data); this.apiResponse.next(data);
-      })
+      .subscribe(data => {this.apiResponse.next(data)})
   };
 
   private handleError<T>(operation = 'operation', reuslt?: T) {

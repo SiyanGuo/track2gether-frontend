@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -13,10 +12,8 @@ describe('DeleteModalComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DeleteModalComponent ],
       imports:[HttpClientModule, RouterTestingModule],
-
     })
     .compileComponents();
-
   });
 
   beforeEach(() => {

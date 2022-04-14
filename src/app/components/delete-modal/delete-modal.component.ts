@@ -19,7 +19,7 @@ export class DeleteModalComponent implements OnInit {
   
   closeResult = '';
 
-  constructor(private modalService: NgbModal, private transactionService: TransactionsService, private recordService: RecordService) { }
+  constructor(private modalService: NgbModal, private transactionsService: TransactionsService, private recordService: RecordService) { }
 
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -30,9 +30,9 @@ export class DeleteModalComponent implements OnInit {
   }
 
   delete() {
-    this.transactionService.deleteTransaction(this.transactionId)
+    this.transactionsService.deleteTransaction(this.transactionId)
     .subscribe( (res:any) => {
-      this.transactionService.getAllTransactionsByType(this.typeId);
+      this.transactionsService.getAllTransactionsByType(this.typeId);
     });
   };
 

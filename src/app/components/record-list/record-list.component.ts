@@ -55,7 +55,7 @@ export class RecordListComponent implements OnInit {
   search(text: string, pipe: PipeTransform): Record[] {
     return (this.records).filter(record => {
       const term = text.toLowerCase();
-      let checkShared = record.shared ? "Common" : "Individual";
+      let checkShared = record.shared ? "True" : "False";
       return record.categoryType.toLowerCase().includes(term)
         || record.description.toLowerCase().includes(term)
         || record.categoryname.toLowerCase().includes(term)
