@@ -7,36 +7,36 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
   
-        <!-- ONLY visible after log in -->
-        <ul *ngIf="this.loggedIn" class="navbar-nav mr-auto">
-        <!-- need to dynamically change active state -->
+
+        <ul *ngIf="isLoggedIn$ | async as isLoggedIn" class="navbar-nav mr-auto">
+
             <li class="nav-item">
-                <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">My Dashboard</a>
+                <a class="nav-link" *ngIf="isLoggedIn" routerLink="/dashboard" routerLinkActive="active">My Dashboard</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" routerLink="/income" routerLinkActive="active">My Income</a>
+                <a class="nav-link" *ngIf="isLoggedIn" routerLink="/income" routerLinkActive="active">My Income</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" routerLink="/expenses" routerLinkActive="active">My Expenses</a>
+                <a class="nav-link" *ngIf="isLoggedIn" routerLink="/expenses" routerLinkActive="active">My Expenses</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" routerLink="/partner" routerLinkActive="active">My Partner</a>
+                <a class="nav-link" *ngIf="isLoggedIn" routerLink="/partner" routerLinkActive="active">My Partner</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/" (onClick) = "logout()">Logout</a>
+                <a class="nav-link" *ngIf="isLoggedIn" href="/" (onClick) = "onLogout()">Logout</a>
             </li>
         </ul>
 
-        <div *ngIf="!this.loggedIn">
+        <div>
             <span class="navbar-text">
                 <ul class="navbar-nav mr-auto">
     
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/login" routerLinkActive="active">Log in</a>
+                    <li class="nav-item" *ngIf="!(isLoggedIn$ | async) as isLoggedIn">
+                        <a class="nav-link" *ngIf="isLoggedIn" routerLink="/login" routerLinkActive="active">Log in</a>
                     </li>
         
                     <!-- <li class="nav-item">

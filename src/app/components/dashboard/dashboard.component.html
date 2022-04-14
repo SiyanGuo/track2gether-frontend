@@ -2,11 +2,11 @@
 
     <div class="jumbotron">
         <div class="container">
-            <!-- need to update the name -->
             <h1 class="display-3">Welcome <span>{{firstName}}</span>!</h1>
             <div class="mb-5">
 
-                <p>Get a handle on your personal and partner's finances with Track2gether! Check out your {{currentMonth}}'s
+                <p>Get a handle on your personal and partner's finances with Track2gether! Check out your
+                    {{currentMonth}}'s
                     financial status as below.</p>
 
             </div>
@@ -24,49 +24,19 @@
                         {{currentMonth}}
                     </a>
                 </div>
-                <!-- <div class="dropdown mr-3">
-                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Monthly
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button" *ngFor="let month of months">{{month}}</button>
-                    </div>
-                </div> -->
             </div>
         </div>
 
 
     </div>
 
-    <div class="container">
-        <!-- Example row of columns -->
-        <div class="row">
-            <div class="col-md-4">
-                <h2>placeholder for chart</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                    mollis euismod. Donec sed odio dui. </p>
-
-            </div>
-            <div class="col-md-4">
-                <h2>placeholder for chart</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                    mollis euismod. Donec sed odio dui. </p>
-
-            </div>
-            <div class="col-md-4">
-                <h2>placeholder for chart</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
-                    porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-                    ut fermentum massa justo sit amet risus.</p>
-
+    <div class="container auto-width" style="width:50%">
+        <div class="row mb-4">
+            <div class="col-md-12 text-center">
+                <h4 class="mb-4">Income and Expenses Comparison </h4>
+                <img [src]="this.url" alt="piechart">
             </div>
         </div>
-
         <hr>
-
     </div>
-
 </main>

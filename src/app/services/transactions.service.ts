@@ -70,11 +70,21 @@ export class TransactionsService {
         'Authorization': `Bearer ${this.jwt}`
       }
     }).pipe(catchError(this.handleError<Record[]>('getAllTransactionsByType', [])))
-      .subscribe(data => { this.newTransactionList.next(data); console.log('data', data) })
+      .subscribe(data => { this.newTransactionList.next(data);})
   };
 
   getAllTransactions(): Observable<Record[]> {
     const url = `${environment.BACKEND_URL}/users/${this.spouseId}/transactions`;
+    return this.http.get<Record[]>(url, {
+      'headers': {
+        'Authorization': `Bearer ${this.jwt}`
+      }
+    }).pipe(catchError(this.handleError<Record[]>('getAllTransactions', [])))
+  };
+
+
+  getMonthlyTransactions(month:number): Observable<Record[]> {
+    const url = `${environment.BACKEND_URL}/users/${this.userId}/transactions/filterby?month=${month}&year=2022`;
     return this.http.get<Record[]>(url, {
       'headers': {
         'Authorization': `Bearer ${this.jwt}`

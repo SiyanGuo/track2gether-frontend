@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Category } from 'src/app/models/transaction-category';
-import { TransactionsService } from 'src/app/services/transactions.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-income-page',
@@ -10,11 +9,13 @@ import { TransactionsService } from 'src/app/services/transactions.service';
 })
 export class IncomePageComponent implements OnInit {
   typeId=1;
-  // category = ["salary", "investment", "other"];
 
-  constructor(private route: ActivatedRoute, ) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    if(!this.authService.isLoggedIn) {
+      this.router.navigate(["login"]);
+    }
   }
 
 }

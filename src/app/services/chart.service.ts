@@ -7,14 +7,14 @@ import { catchError, Observable, of, Subject } from 'rxjs';
 })
 export class ChartService {
 
-  apiResponse:Subject<Response> = new Subject();
+  apiResponse: Subject<any> = new Subject();
 
   constructor(private http: HttpClient) { }
 
-  getIncomeAndExpenses() {
-    const url = "https://cors-anywhere.herokuapp.com/https://quickchart.io/chart.create";
-    // const url = "https://quickchart.io/chart.create";
-
+  getIncomeAndExpenses(income: number, expenses: number) {
+    const url = "https://cors-anywhere.herokuapp.com/https://quickchart.io/chart/create";
+    // const url = "https://quickchart.io/chart/create";
+    console.log('chart service', income, expenses)
     this.http.post(url, {
       "backgroundColor": "#fff",
       "width": 500,
@@ -26,17 +26,15 @@ export class ChartService {
           "labels": ["income", "expenses"],
           "datasets": [
             {
-              "label": "Users",
-              "data": [2900, 1200]
+              "label": "Types",
+              "data": [income, expenses]
             }
           ]
         }
-
       }
-    }, {   'observe': 'response',}
-    ).pipe(catchError(this.handleError('getIncomeAndExpenses', [])))
-      .subscribe( data => {
-        console.log("chart", data);
+    }).pipe(catchError(this.handleError('getIncomeAndExpenses', [])))
+      .subscribe(data => {
+        console.log("chart", data); this.apiResponse.next(data);
       })
   };
 

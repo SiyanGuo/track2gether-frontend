@@ -2,7 +2,7 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable, resolveForwardRef } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { UserInfo } from "../models/user-info";
 import { User } from "../models/user-models";
@@ -13,10 +13,15 @@ import { User } from "../models/user-models";
 })
 export class AuthService {
   loginErrorSubject: Subject<string> = new Subject<string>(); //for error message
-  isLoggedin: Subject<boolean> = new Subject<boolean>();
-  currentUser:any;
 
-  constructor(private client: HttpClient, private router: Router) {}
+  private loginStatus = new BehaviorSubject<boolean>(false);
+
+  get isLoggedIn() {
+    return this.loginStatus.asObservable();
+  }
+  currentUser: any;
+
+  constructor(private client: HttpClient, private router: Router) { }
 
   getUserInfoFromJwt(): Observable<HttpResponse<UserInfo>> {
     return this.client.get<UserInfo>(`${environment.BACKEND_URL}/login`, {
@@ -36,19 +41,19 @@ export class AuthService {
           "password": password,
         },
         {
-          "observe": "response", 
+          "observe": "response",
         }
       )
       .subscribe(
         (res) => {
-         
+
           const jwt = res.headers.get("token");
 
           localStorage.setItem("jwt", JSON.stringify(jwt));
           localStorage.setItem("user_info", JSON.stringify(res.body));
 
-          this.isLoggedin.next(true);
-          this.currentUser=res.body;
+          this.loginStatus.next(true);
+          this.currentUser = res.body;
           console.log("currentUser", this.currentUser)
           this.router.navigate(["dashboard"]);
         },
@@ -57,5 +62,12 @@ export class AuthService {
           this.loginErrorSubject.next(errorMessage); // Publish information to the loginErrorSubject
         }
       );
+  }
+
+  logout(){
+    this.loginStatus.next(false);
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("user_info");
+    this.router.navigate(["login"]);
   }
 }

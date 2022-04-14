@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-expense-page',
@@ -9,11 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 export class ExpensePageComponent implements OnInit {
   typeId=2;
 
-  category=["housing", "food", "transportation", "clothing", "utilities", "other"]
-
-  constructor(private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    if(!this.authService.isLoggedIn) {
+      this.router.navigate(["login"]);
+    }
   }
 
 }
