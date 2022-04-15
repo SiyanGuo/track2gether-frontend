@@ -87,7 +87,6 @@ export class RecordListComponent implements OnInit {
 
     this.transactionService.newTransactionList.subscribe(data => {
       this.records = data;
-      // this.records$ = of(data);  
     });
 
   }

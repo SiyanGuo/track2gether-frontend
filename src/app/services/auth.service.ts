@@ -50,7 +50,6 @@ export class AuthService {
 
           this.loginStatus.next(true);
           this.currentUser = res.body;
-          console.log("currentUser", this.currentUser);
           this.router.navigate(["dashboard"]);
         },
         (err) => {
@@ -73,7 +72,6 @@ export class AuthService {
   }
 
   logout() {
-    console.log("logout authservice");
     localStorage.removeItem("jwt");
     localStorage.removeItem("user_info");
     this.router.navigate(["login"]);
