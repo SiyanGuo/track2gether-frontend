@@ -2,7 +2,6 @@
 
     <div class="d-flex flex-row justify-content-between">
 
-
         <form>
             <div class="mb-3 row">
                 <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text
@@ -57,7 +56,7 @@
                 </td>
 
                 <td>
-                    <ngb-highlight [result]=" (record.shared? 'Common': 'Individual')" [term]="filter.value">
+                    <ngb-highlight [result]="(record.shared? 'True' : 'False')" [term]="filter.value">
                     </ngb-highlight>
                 </td>
 
