@@ -18,7 +18,7 @@ export class AuthService {
 
   currentUser: any;
 
-  constructor(private client: HttpClient, private router: Router) { }
+  constructor(private client: HttpClient, private router: Router) {}
 
   getUserInfoFromJwt(): Observable<HttpResponse<UserInfo>> {
     return this.client.get<UserInfo>(`${environment.BACKEND_URL}/login`, {
@@ -34,16 +34,15 @@ export class AuthService {
       .post<User>(
         `${environment.BACKEND_URL}/login`,
         {
-          "email": email, // header
-          "password": password,
+          email: email, // header
+          password: password,
         },
         {
-          "observe": "response",
+          observe: "response",
         }
       )
       .subscribe(
         (res) => {
-
           const jwt = res.headers.get("token");
 
           localStorage.setItem("jwt", JSON.stringify(jwt));
@@ -51,7 +50,7 @@ export class AuthService {
 
           this.loginStatus.next(true);
           this.currentUser = res.body;
-          console.log("currentUser", this.currentUser)
+          console.log("currentUser", this.currentUser);
           this.router.navigate(["dashboard"]);
         },
         (err) => {
@@ -59,6 +58,18 @@ export class AuthService {
           this.loginErrorSubject.next(errorMessage); // Publish information to the loginErrorSubject
         }
       );
+  }
+
+  register(firstname: string, lastname: string,  email: string, password: string): Observable<any> {
+    return this.client.post<User>(
+      `${environment.BACKEND_URL}/register`,
+      {
+        firstname,
+        lastname,
+        email,
+        password,
+      },
+    );
   }
 
   logout() {
@@ -69,9 +80,9 @@ export class AuthService {
   }
 
   checkLoginStatus(): boolean {
-    if (localStorage.getItem('jwt')) return true;
+    if (localStorage.getItem("jwt")) return true;
     return false;
-  };
+  }
 
   get isLoggedIn() {
     return this.loginStatus.asObservable();

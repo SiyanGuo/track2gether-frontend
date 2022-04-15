@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PartnerPageComponent } from './components/partner-page/partner-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
 import { RecordListComponent } from './components/record-list/record-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
@@ -32,6 +33,7 @@ import { InterceptorService } from './_helpers/auth.interceptor';
     PartnerPageComponent,
     LoginComponent,
     HomeComponent,
+    RegisterComponent,
     RecordListComponent,
     DeleteModalComponent,
   ],
