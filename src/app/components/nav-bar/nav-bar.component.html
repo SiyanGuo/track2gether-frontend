@@ -27,7 +27,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" *ngIf="isLoggedIn" href="/" (onClick) = "onLogout()">Logout</a>
+                <a id="logoutBtn" class="nav-link" *ngIf="isLoggedIn" (click) = "onLogout()">Logout</a>
             </li>
         </ul>
 
