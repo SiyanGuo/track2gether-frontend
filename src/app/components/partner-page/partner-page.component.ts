@@ -19,6 +19,10 @@ export class PartnerPageComponent implements OnInit {
   searchText = "";
   records!: Record[];
 
+
+  user = JSON.parse(localStorage.getItem("user_info") || "");
+  spouseFirstName = this.user.spouseFirstName;
+
   currentMonth = new Date().getMonth();
   monthsArray: String[] = [
     "January",
@@ -44,23 +48,23 @@ export class PartnerPageComponent implements OnInit {
     private router: Router
   ) {}
 
-  filterByMonth(value: string) {
-    if (value === "all")
-      this.transactionService.getAllTransactionsByType(this.typeId);
+  // filterByMonth(value: string) {
+  //   if (value === "all")
+  //     this.transactionService.getAllTransactions();
 
-    const monthNum = this.monthsArray.indexOf(value) + 1;
+  //   const monthNum = this.monthsArray.indexOf(value) + 1;
 
-    if (this.typeId == 1) this.type = "income";
-    else this.type = "expenses";
+  //   if (this.typeId == 1) this.type = "income";
+  //   else this.type = "expenses";
 
-    this.transactionService
-      .getMonthlyTransactions(monthNum)
-      .subscribe((list) => {
-        this.records = list.filter((each) => {
-          return each.categoryType == this.type;
-        });
-      });
-  }
+  //   this.transactionService
+  //     .getMonthlyTransactions(monthNum)
+  //     .subscribe((list) => {
+  //       this.records = list.filter((each) => {
+  //         return each.categoryType == this.type;
+  //       });
+  //     });
+  // }
 
   ngOnInit(): void {
     if (!this.authService.isLoggedIn) {

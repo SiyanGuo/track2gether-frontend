@@ -1,14 +1,13 @@
 
 <div class="container text-center mt-4">
 
-    <h4 class="mb-4">List of my partner's expenses </h4>    
+    <h4 class="mb-4"> My partner {{spouseFirstName}}'s income and expenses history </h4>    
   <div class="d-flex flex-row justify-content-md-end">
     <div class="mb-6">
-            <select #monthly (change)="filterByMonth(monthly.value)" name="monthly" id="" class="form-control">
+            <!-- <select #monthly (change)="filterByMonth(monthly.value)" name="monthly" id="" class="form-control">
                 <option value="all" selected="true">Monthly View</option>
                 <option value="{{month}}" *ngFor="let month of months">{{month}}</option>
-
-            </select>
+            </select> -->
     </div>
  </div>
 <br >
