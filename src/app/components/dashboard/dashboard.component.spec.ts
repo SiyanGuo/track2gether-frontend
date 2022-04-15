@@ -12,7 +12,7 @@ describe('DashboardComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
       imports:[HttpClientModule, RouterTestingModule],
-
+      providers:[]
     })
     .compileComponents();
   });

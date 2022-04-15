@@ -14,8 +14,7 @@ export class ChartService {
   getIncomeAndExpenses(income: number, expenses: number) {
     const url = "https://cors-anywhere.herokuapp.com/https://quickchart.io/chart/create";
     // const url = "https://quickchart.io/chart/create";
-    console.log('chart service', income, expenses)
-    this.http.post(url, {
+    this.http.post<Response>(url, {
       "backgroundColor": "#fff",
       "width": 500,
       "height": 300,
