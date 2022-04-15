@@ -21,7 +21,7 @@ export class TransactionsService {
 
 
   deleteTransaction(transactionId: number) {
-    const url = `${environment.BACKEND_URL}/users/1/transaction/${transactionId}`;
+    const url = `${environment.BACKEND_URL}/users/${this.userId}/transaction/${transactionId}`;
     return this.http.delete(url, {
       'headers': {
         'Authorization': `Bearer ${this.jwt}`
@@ -31,7 +31,6 @@ export class TransactionsService {
 
   addTransaction(id: number, amount: number, categoryId: number, date: string, description: string, shared: boolean) {
     const url = `${environment.BACKEND_URL}/users/${id}/transaction`;
-    console.log('service category id', categoryId)
     return this.http.post<Record>(url, {
       'amount': amount,
       'categoryid': categoryId,
@@ -48,7 +47,6 @@ export class TransactionsService {
 
   updateTransaction(id: number, transactionId: number, amount: number, categoryId: number, date: string, description: string, shared: boolean) {
     const url = `${environment.BACKEND_URL}/users/${id}/transaction/${transactionId}`;
-    console.log('service transaction id', transactionId)
     return this.http.put<Record>(url, {
       'amount': amount,
       'categoryid': categoryId,

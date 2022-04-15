@@ -32,10 +32,12 @@ export class FormComponent implements OnInit {
 
   object!:any;
 
+  constructor(private formBuilder: FormBuilder, private recordService: RecordService, private transactionService: TransactionsService) { }
+  
   updateRecord() {
     this.isAdd = false;
     this.form = this.formBuilder.group({
-      amount: new FormControl(this.currentRecord.amount, [Validators.required, Validators.pattern('^[0-9]+$')]),
+      amount: new FormControl(this.currentRecord.amount, [Validators.required, Validators.pattern('^[0-9]{1,8}(,[0-9]{3})*(\.[0-9]+)*$')]),
       categoryname: new FormControl(this.currentRecord.categoryname, Validators.required),
       date: new FormControl(this.currentRecord.date, [Validators.required, Validators.pattern('^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$')]),
       description: new FormControl(this.currentRecord.description),
@@ -43,24 +45,20 @@ export class FormComponent implements OnInit {
     });
   }
 
-  constructor(private formBuilder: FormBuilder, private recordService: RecordService, private transactionService: TransactionsService) { }
-
-
   sendTransaction(formValue: Record) {
 
     if (this.form.valid) {
 
       this.object = this.categoryList.find(obj => obj.categoryname === formValue.categoryname)
       this.categoryId = this.object.id;
-console.log('categoriId', this.categoryId)
       if (this.isAdd) {
         if (formValue.shared) {
           formValue.amount /= 2;
           this.transactionService.addTransaction(this.userId, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
           .subscribe( (res:any) => this.transactionService.getAllTransactionsByType(this.typeId));
 
-          // this.transactionService.addTransaction(this.spouseId, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
-          // .subscribe();
+          this.transactionService.addTransaction(this.spouseId, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
+          .subscribe();
         } else {
           formValue.amount = + formValue.amount;
           this.transactionService.addTransaction(this.userId, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
@@ -72,8 +70,8 @@ console.log('categoriId', this.categoryId)
           this.transactionService.updateTransaction(this.userId, this.currentRecord.id, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
           .subscribe((res:any) => this.transactionService.getAllTransactionsByType(this.typeId));
 
-          // this.transactionService.updateTransaction(this.spouseId, this.currentRecord.id, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
-          // .subscribe();
+          this.transactionService.updateTransaction(this.spouseId, this.currentRecord.id, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
+          .subscribe();
         } else {
           formValue.amount = + formValue.amount;
           this.transactionService.updateTransaction(this.userId, this.currentRecord.id, formValue.amount, this.categoryId, formValue.date, formValue.description, formValue.shared)
@@ -93,7 +91,7 @@ console.log('categoriId', this.categoryId)
     })
 
     this.form = this.formBuilder.group({
-      amount: new FormControl(this.amount, [Validators.required, Validators.pattern('^[0-9]+$')]),
+      amount: new FormControl(this.amount, [Validators.required, Validators.pattern('^[0-9]{1,8}(,[0-9]{3})*(\.[0-9]+)*$')]),
       categoryname: new FormControl(this.categoryname, Validators.required),
       date: new FormControl(this.date, [Validators.required, Validators.pattern('^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$')]),
       description: new FormControl(this.description),

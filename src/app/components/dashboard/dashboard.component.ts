@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(["login"]);
     }
 
-    this.transactionService.getMonthlyTransactions(4).subscribe(list => {
+    this.transactionService.getMonthlyTransactions(this.monthNum).subscribe(list => {
       this.totalExpenses = Math.floor(list.filter(each => { return each.categoryType == "expenses" }).map(each => { return each.amount }).reduce((total, num) => total + num));
       this.totalIncome = Math.floor(list.filter(each => { return each.categoryType == "income" }).map(each => { return each.amount }).reduce((total, num) => total + num));
       this.chartService.getIncomeAndExpenses(this.totalIncome, this.totalExpenses);

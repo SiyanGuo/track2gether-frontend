@@ -1,14 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { DeleteModalComponent } from './delete-modal.component';
 
-describe('RecordModalComponent', () => {
+describe('DeleteModalComponent', () => {
   let component: DeleteModalComponent;
   let fixture: ComponentFixture<DeleteModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteModalComponent ]
+      declarations: [ DeleteModalComponent ],
+      imports:[HttpClientModule, RouterTestingModule],
     })
     .compileComponents();
   });
