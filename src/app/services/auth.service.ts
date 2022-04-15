@@ -73,6 +73,7 @@ export class AuthService {
   }
 
   logout() {
+    console.log("logout authservice");
     localStorage.removeItem("jwt");
     localStorage.removeItem("user_info");
     this.router.navigate(["login"]);
