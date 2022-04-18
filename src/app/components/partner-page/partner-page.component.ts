@@ -19,10 +19,13 @@ export class PartnerPageComponent implements OnInit {
   searchText = "";
   records!: Record[];
 
+  userInfo: any;
+  spouseFirstName!:string;
 
-  user = JSON.parse(localStorage.getItem("user_info") || "");
-  spouseFirstName = this.user.spouseFirstName;
-
+  getSpouseName():string{
+    this.userInfo = JSON.parse(localStorage.getItem("user_info") || "")
+    return this.spouseFirstName = this.userInfo.spouseFirstName;
+  }
   currentMonth = new Date().getMonth();
   monthsArray: String[] = [
     "January",
@@ -43,9 +46,7 @@ export class PartnerPageComponent implements OnInit {
   });
 
   constructor(
-    private transactionService: TransactionsService,
-    private authService: AuthService,
-    private router: Router
+    private transactionsService: TransactionsService,
   ) {}
 
   // filterByMonth(value: string) {
@@ -67,12 +68,11 @@ export class PartnerPageComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    if (!this.authService.isLoggedIn) {
-      this.router.navigate(["login"]);
-    }
-    this.transactionService.getAllTransactions().subscribe((data) => {
-      console.log("partner", data);
+
+    this.transactionsService.getAllTransactions().subscribe((data) => {
       this.records = data;
     });
+
+    this.getSpouseName();
   }
 }
