@@ -1,27 +1,30 @@
 # Track2gether
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+Track2gether, a budget tracker, is an application that helps to keep an accurate record of your money inflow and ou​​tflow. It allows you to monitor and categorize your income sources and spendings. Without the help of a fancy financial planner, we provide an easy and light way to monitor and track your income and expenses for you to have a better idea on you and your partner’s financial status by providing visualized data on financial history.
 
-## Development server
+## Track2gether Backend Repo
+[Backend repo](https://github.com/SiyanGuo/track2gether-backend)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Built With
 
-## Code scaffolding
+* Angular 2+
+* Bootstrap
+* HTML
+* QuickChart API
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Deployment
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+[Firebase](https://track2gether-98fc9.web.app)
+Testing Account:
+Email: john@gmail.com
+Password: john123
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Screenshots
 
-## Running end-to-end tests
+![the screenshot of the dashboard page](screenshots/dashboard.png)
+![the screenshot of the expenses page](screenshots/expenses.png)
+![the screenshot of the income page](screenshots/income.png)
+![the screenshot of the partner page](screenshots/partner.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
